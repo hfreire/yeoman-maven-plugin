@@ -11,43 +11,27 @@ import org.apache.maven.plugins.annotations.Parameter;
 import java.io.File;
 import java.io.IOException;
 
-@Mojo(name = "build", defaultPhase = LifecyclePhase.PREPARE_PACKAGE)
-public class YeomanMojo extends AbstractMojo {
+@Mojo(name = "run", defaultPhase = LifecyclePhase.NONE)
+public class RunMojo extends AbstractMojo {
     @Parameter(defaultValue = "src/main/javascript", required = false)
     private File yeomanDirectory;
 
     @Parameter(defaultValue = "${os.name}", readonly = true)
     private String osName;
 
-    @Parameter(defaultValue = "install", required = false)
-    private String npmCommand;
-
-    @Parameter(defaultValue = "install", required = false)
-    private String bowerCommand;
-
-    @Parameter(defaultValue = "build", required = false)
+    @Parameter(defaultValue = "server", required = true)
     private String gruntTask;
 
     private DefaultExecutor executor;
 
-    public YeomanMojo() {
+    public RunMojo() {
         super();
 
         executor = new DefaultExecutor();
     }
 
     public void execute() throws MojoExecutionException {
-        executeNpmCommand();
-        executeBowerCommand();
         executeGruntTask();
-    }
-
-    private void executeNpmCommand() throws MojoExecutionException {
-        executeCommand("npm " + npmCommand);
-    }
-
-    private void executeBowerCommand() throws MojoExecutionException {
-        executeCommand("bower --no-color " + bowerCommand);
     }
 
     private void executeGruntTask() throws MojoExecutionException {

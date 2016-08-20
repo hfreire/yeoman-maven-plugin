@@ -89,7 +89,7 @@
                 <artifactId>maven-plugin-plugin</artifactId>
                 <version>${maven-plugin-annotations.version}</version>
                 <configuration>
-                    <goalPrefix>maven-yeoman-plugin</goalPrefix>
+                    <goalPrefix>yeoman</goalPrefix>
                     <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
                 </configuration>
                 <executions>
